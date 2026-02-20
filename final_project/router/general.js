@@ -137,6 +137,36 @@ public_users.get('/asyncisbn/:isbn', async function (req, res) {
 
 });
 
+// ================= TASK 12 =================
+// Get books by Author using Axios + async/await
+public_users.get('/asyncauthor/:author', async function (req, res) {
+
+    const author = req.params.author;
+
+    try {
+        const response = await axios.get(`http://localhost:5000/author/${author}`);
+        return res.status(200).json(response.data);
+    } catch (error) {
+        return res.status(404).json({ message: "No books found using async/await" });
+    }
+
+});
+
+// ================= TASK 13 =================
+// Get book by Title using Axios + async/await
+public_users.get('/asynctitle/:title', async function (req, res) {
+
+    const title = req.params.title;
+
+    try {
+        const response = await axios.get(`http://localhost:5000/title/${title}`);
+        return res.status(200).json(response.data);
+    } catch (error) {
+        return res.status(404).json({ message: "Book not found using async/await" });
+    }
+
+});
+
 
 // ================= EXPORT =================
 module.exports.general = public_users;
